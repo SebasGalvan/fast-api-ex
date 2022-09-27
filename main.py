@@ -1,6 +1,8 @@
 from typing import Union
 from fastapi import FastAPI
 
+from pydantic import BaseModel
+
 #Creacion de una app FastAPI
 app = FastAPI()
 
@@ -21,5 +23,15 @@ def read_item(item_id : int, q : Union[str, None] = None):
 def get_items():
     return {'items' : 'all items'}
 
+# http://127.0.0.1:8000/calculadora?parm1=6&parm2=7
+@app.get('/calculadora')
+def calculadora(parm1: int, parm2 : int):
+    return {'suma': parm1 + parm2}
 
+# Activar entorno
 # Para ejecutar el programa: uvicorn main:app --reload
+
+
+# Modelos
+
+    
