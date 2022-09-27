@@ -34,4 +34,10 @@ def calculadora(parm1: int, parm2 : int):
 
 # Modelos
 
+class Item(BaseModel):
+    name: str
+    price: float
+    is_offer: Union[bool, None] = None
+    
+
     
