@@ -6,6 +6,13 @@ from pydantic import BaseModel
 #Creacion de una app FastAPI
 app = FastAPI()
 
+class Item(BaseModel):
+    name: str
+    price: float
+    is_offer: Union[bool, None] = None
+    
+
+
 @app.get('/')
 def read_root():
     return {'Hello':'World'}
@@ -28,16 +35,16 @@ def get_items():
 def calculadora(parm1: int, parm2 : int):
     return {'suma': parm1 + parm2}
 
+@app.put('/item/{item_id}')
+def update_item(item_id : int, item : Item):
+    return {'item_name': item.name, 'item_id' : item_id}
+    ...
 # Activar entorno
 # Para ejecutar el programa: uvicorn main:app --reload
 
 
 # Modelos
 
-class Item(BaseModel):
-    name: str
-    price: float
-    is_offer: Union[bool, None] = None
-    
+
 
     
